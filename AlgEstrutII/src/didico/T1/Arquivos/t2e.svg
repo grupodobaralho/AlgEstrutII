@@ -1,0 +1,44 @@
+<?xml version="1.0" standalone="no"?>
+
+<!-- width e height dizem o tamanho que vai ter no browser -->
+
+<!-- a ViewBox diz que a imagem tem coordenadas 0 <= x,y <= 8 -->
+
+<svg xmlns="http://www.w3.org/2000/svg" width="20cm" height="20cm" viewBox="0 0 8 8">
+
+<g style="stroke-width:.05; stroke:black">
+
+<rect x="4" y="0" width="4" height="4" style="fill:white"/>
+<rect x="3" y="0" width="1" height="1" style="fill:white"/>
+<rect x="2" y="0" width="1" height="1" style="fill:black"/>
+<rect x="2" y="1" width="1" height="1" style="fill:white"/>
+<rect x="3" y="1" width="1" height="1" style="fill:black"/>
+<rect x="1" y="0" width="1" height="1" style="fill:black"/>
+<rect x="0" y="0" width="1" height="1" style="fill:white"/>
+<rect x="0" y="1" width="1" height="1" style="fill:black"/>
+<rect x="1" y="1" width="1" height="1" style="fill:white"/>
+<rect x="1" y="2" width="1" height="1" style="fill:white"/>
+<rect x="0" y="2" width="1" height="1" style="fill:black"/>
+<rect x="0" y="3" width="1" height="1" style="fill:white"/>
+<rect x="1" y="3" width="1" height="1" style="fill:black"/>
+<rect x="2" y="2" width="2" height="2" style="fill:white"/>
+<rect x="3" y="4" width="1" height="1" style="fill:white"/>
+<rect x="2" y="4" width="1" height="1" style="fill:black"/>
+<rect x="2" y="5" width="1" height="1" style="fill:white"/>
+<rect x="3" y="5" width="1" height="1" style="fill:black"/>
+<rect x="0" y="4" width="2" height="2" style="fill:white"/>
+<rect x="1" y="6" width="1" height="1" style="fill:white"/>
+<rect x="0" y="6" width="1" height="1" style="fill:black"/>
+<rect x="0" y="7" width="1" height="1" style="fill:white"/>
+<rect x="1" y="7" width="1" height="1" style="fill:black"/>
+<rect x="3" y="6" width="1" height="1" style="fill:black"/>
+<rect x="2" y="6" width="1" height="1" style="fill:white"/>
+<rect x="2" y="7" width="1" height="1" style="fill:black"/>
+<rect x="3" y="7" width="1" height="1" style="fill:white"/>
+<rect x="6" y="4" width="2" height="2" style="fill:white"/>
+<rect x="4" y="4" width="2" height="2" style="fill:white"/>
+<rect x="4" y="6" width="2" height="2" style="fill:white"/>
+<rect x="6" y="6" width="2" height="2" style="fill:black"/>
+
+</g>
+</svg>
