@@ -1,7 +1,5 @@
 package didico.T1;
 
-import java.io.IOException;
-
 public class App {
 	
 	private static int TAM_DIVISAO = 4;
