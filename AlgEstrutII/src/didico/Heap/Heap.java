@@ -30,17 +30,6 @@ public class Heap {
             sift_up(pai);
         }
     }
-
-    
-    public void putMax(int data) {
-    	if (size >= TAM) {
-    		System.out.println("Vetor atingiu seu máximo de " + TAM + " valores!");
-    		return;
-    	}
-        v[size] = data;
-        sift_up(size);
-        size++;
-    }
     
     
     public void put(int data) {
@@ -53,23 +42,22 @@ public class Heap {
     }
 
     
-    public void maxHeap(){
+    public void maxHeap() {
         int pos = (size-1)/2;
-        while (pos >=0) {
+        while (pos >= 0) {
         	sift_down_max(pos--);
         }
     }
     
     
-    public void heapsortAsc(){
+    public void heapsortAsc() {
     	maxHeap();
     	int tam = size-1;
-    	while (tam>0){
+    	while (tam > 0){
     		int aux = v[tam];
     		v[tam] = v[0];
     		v[0] = aux;
-    		tam--;
-    		sift_down_max(0, tam+1);
+    		sift_down_max(0, tam--);
     	}
     }
     
@@ -95,23 +83,22 @@ public class Heap {
     }
     
     
-    public void minHeap(){
+    public void minHeap() {
         int pos = (size-1)/2;
-        while (pos >=0) {
+        while (pos >= 0) {
         	sift_down_min(pos--);
         }
     }
     
     
-    public void heapsortDesc(){
+    public void heapsortDesc() {
     	minHeap();
     	int tam = size-1;
-    	while (tam>0){
+    	while (tam > 0){
     		int aux = v[tam];
     		v[tam] = v[0];
     		v[0] = aux;
-    		tam--;
-    		sift_down_min(0, tam+1);
+    		sift_down_min(0, tam--);
     	}
     }
     
@@ -161,7 +148,7 @@ public class Heap {
     }
     
     
-    private void print(int b, int elem, int sp)  {
+    private void print(int b, int elem, int sp) {
         int i, j;
 
         System.out.println("");
@@ -183,11 +170,11 @@ public class Heap {
     }
     
     
-    public void fazBadHeap(){
+    public void fazBadHeap() {
         fazBadHeap(0);
     }
     
-    private void fazBadHeap(int pos){
+    private void fazBadHeap(int pos) {
     	if(pos>=size) return;
     	
         int ptroca = pos;
@@ -209,13 +196,14 @@ public class Heap {
     }
     
         
-    public void print()  {
+    public void print() {
         System.out.println("\n");
         print( 0, 1, 32 );
         System.out.println("\n");
     }
     
-    public void printSize()  {
+    
+    public void printSize() {
         System.out.println("\nSize " + size + "\n");
     }
 
