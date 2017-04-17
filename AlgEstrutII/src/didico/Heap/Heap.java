@@ -18,7 +18,7 @@ public class Heap {
     private int parent ( int i ) { return (i-1) / 2; }
 
     
-    private void sift_up ( int pos ) {
+    private void sift_up(int pos) {
         if(pos==0) return;
 
         int pai = parent(pos);
@@ -32,38 +32,49 @@ public class Heap {
     }
 
     
-    public void put( int data ) {
+    public void putMax(int data) {
     	if (size >= TAM) {
     		System.out.println("Vetor atingiu seu máximo de " + TAM + " valores!");
     		return;
     	}
         v[size] = data;
-        //sift_up( size );
+        sift_up(size);
+        size++;
+    }
+    
+    
+    public void put(int data) {
+    	if (size >= TAM) {
+    		System.out.println("Vetor atingiu seu máximo de " + TAM + " valores!");
+    		return;
+    	}
+        v[size] = data;
         size++;
     }
 
     
-    public void fazHeap(){
+    public void maxHeap(){
         int pos = (size-1)/2;
         while (pos >=0) {
-        	sift_down(pos--);
+        	sift_down_max(pos--);
         }
     }
     
     
-    public void heapsort(){
-    	fazHeap();
+    public void heapsortAsc(){
+    	maxHeap();
     	int tam = size-1;
     	while (tam>0){
     		int aux = v[tam];
     		v[tam] = v[0];
     		v[0] = aux;
     		tam--;
-    		sift_down_2 ( 0, tam+1 );
+    		sift_down_max(0, tam+1);
     	}
     }
     
-    private void sift_down_2 ( int pos, int tam ) {
+    
+    private void sift_down_max(int pos, int tam) {
         int ptroca = pos;
         int pLeft = left(pos);
         int pRight = right(pos);
@@ -75,55 +86,96 @@ public class Heap {
         int aux = v[ptroca];
         v[ptroca] = v[pos];
         v[pos] = aux;
-        sift_down_2(ptroca, tam);
+        sift_down_max(ptroca, tam);
     }
     
     
+    private void sift_down_max(int pos) {
+    	sift_down_max(pos, size);
+    }
     
     
-    private void sift_down ( int pos ) {
+    public void minHeap(){
+        int pos = (size-1)/2;
+        while (pos >=0) {
+        	sift_down_min(pos--);
+        }
+    }
+    
+    
+    public void heapsortDesc(){
+    	minHeap();
+    	int tam = size-1;
+    	while (tam>0){
+    		int aux = v[tam];
+    		v[tam] = v[0];
+    		v[0] = aux;
+    		tam--;
+    		sift_down_min(0, tam+1);
+    	}
+    }
+    
+    
+    private void sift_down_min(int pos, int tam) {
         int ptroca = pos;
         int pLeft = left(pos);
         int pRight = right(pos);
 
-        if( pLeft < size && v[pLeft] > v[pos] ) ptroca = pLeft;
-        if( pRight < size && v[pRight] > v[ptroca] ) ptroca = pRight;
+        if( pLeft < tam && v[pLeft] < v[pos] ) ptroca = pLeft;
+        if( pRight < tam && v[pRight] < v[ptroca] ) ptroca = pRight;
         if( ptroca == pos ) return;
 
         int aux = v[ptroca];
         v[ptroca] = v[pos];
         v[pos] = aux;
-        sift_down(ptroca);
+        sift_down_min(ptroca, tam);
+    }
+    
+    
+    private void sift_down_min(int pos) {
+    	sift_down_min(pos, size);
     }
 
     
-    public int get( ) {
+    public int getMax() {
     	if (size <= 0) {
     		System.out.println("Vetor não possui valores!");
     		return -1;
     	}
         int res = v[0];
         v[0] = v[--size];
-        sift_down( 0 );
+        sift_down_max(0);
         return res;
     }
 
     
-    private void print( int b, int elem, int sp )  {
+    public int getMin() {
+    	if (size <= 0) {
+    		System.out.println("Vetor não possui valores!");
+    		return -1;
+    	}
+        int res = v[0];
+        v[0] = v[--size];
+        sift_down_min(0);
+        return res;
+    }
+    
+    
+    private void print(int b, int elem, int sp)  {
         int i, j;
 
-        System.out.println( "" );
-        for( j = 0; j < size; j++ ) System.out.print( v[j] + " " );
-        System.out.println( "" );
+        System.out.println("");
+        for( j = 0; j < size; j++ ) System.out.print( v[j] + " ");
+        System.out.println("");
 
         while ( true ) {
-            for( j = 0; j <= sp / 2; j++ ) System.out.print( " " );
+            for( j = 0; j <= sp / 2; j++ ) System.out.print(" ");
             for( i = b; i < b + elem; i++ ) {
                 if ( i == size ) return;
                 System.out.print( v[i] );
-                for( j = 0; j < sp; j++ ) System.out.print( " " );
+                for( j = 0; j < sp; j++ ) System.out.print(" ");
             }
-            System.out.println( "" );
+            System.out.println("");
             b = b + elem;
             elem = 2 * elem;
             sp = sp / 2;
@@ -157,14 +209,14 @@ public class Heap {
     }
     
         
-    public void print( )  {
-        System.out.println( "\n" );
+    public void print()  {
+        System.out.println("\n");
         print( 0, 1, 32 );
-        System.out.println( "\n" );
+        System.out.println("\n");
     }
     
-    public void printSize( )  {
-        System.out.println( "\nSize " + size + "\n" );
+    public void printSize()  {
+        System.out.println("\nSize " + size + "\n");
     }
 
 }
