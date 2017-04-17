@@ -26,6 +26,11 @@ public class Heap {
 		return (i - 1) / 2;
 	}
 
+	// ****************************************************************************************************
+	// ****************************************************************************************************
+	// ****************************************************************************************************
+	// ****************************************************************************************************
+	// ****************************************************************************************************
 	// método para adicionar, ele chama o Sift_Up
 	public void put(int data) {
 		v[size] = data;
@@ -52,9 +57,18 @@ public class Heap {
 		}
 	}
 
+	// ****************************************************************************************************
+	// ****************************************************************************************************
+	// ****************************************************************************************************
+	// ****************************************************************************************************
+	// ****************************************************************************************************
 	// para remover, sempre remove o primeiro. Troca o primeiro pela maior
 	// folha da direita e chama o sift_down para arrumar
 	public int get() {
+		// não pode remover se não houver valores
+		if (size <= 0) {
+			return -1;
+		}
 		int res = v[0];
 		v[0] = v[--size];
 		sift_down(0);
@@ -81,21 +95,80 @@ public class Heap {
 		sift_down(ptroca);
 	}
 
-	private void fazHeap(int pos) {
+	// ****************************************************************************************************
+	// ****************************************************************************************************
+	// ****************************************************************************************************
+	// ****************************************************************************************************
+	// ****************************************************************************************************
+	// O método fazHeapRuim utiliza o sift_down.
+	// É um método porco do Heap-Sort para ordenar o Heap.
+	public void fazHeapRuim() {
+		fazHeapRuim(0);
+	}
 
+	public void fazHeapRuim(int pos) {
+		if (pos >= size)
+			return;
+
+		int pTroca = pos;
+		int pLeft = left(pos);
+		int pRight = right(pos);
+
+		fazHeapRuim(pLeft);
+		fazHeapRuim(pRight);
+
+		if (pLeft < size && v[pLeft] > v[pos])
+			pTroca = pLeft;
+		if (pRight < size && v[pRight] > v[pTroca])
+			pTroca = pRight;
+		if (pTroca == pos)
+			return;
+
+		int aux = v[pTroca];
+		v[pTroca] = v[pos];
+		v[pos] = aux;
+
+		fazHeapRuim(pTroca);
+	}
+
+	// ****************************************************************************************************
+	// ****************************************************************************************************
+	// ****************************************************************************************************
+	// ****************************************************************************************************
+	// ****************************************************************************************************
+	// O heapsort divide-se em 2 fazes
+	public void heapsort() {
+		fazHeap();
+		int tam = size - 1;
+		while (tam > 0) {
+			int aux = v[tam];
+			v[tam] = v[0];
+			v[0] = aux;
+			tam--;
+			sift_down_2(0, tam + 1);
+		}
+	}
+
+	// A parte 1, faz sift_down da metade do vetor, O(n)
+	public void fazHeap() {
+		int pos = (size - 1) / 2;
+		while (pos >= 0) {
+			sift_down(pos--);
+		}
+	}
+
+	// A parte 2, poe o v[0] (maior elemento) no último e isola ele lá.
+	// depois, faz sift_down do v[0]. Ao final, o segundo maior irá para o v[0],
+	// poe ele no final e isola tb, repete o processo até todos ordenados. O(n
+	// log n)
+	private void sift_down_2(int pos, int tam) {
 		int ptroca = pos;
 		int pLeft = left(pos);
 		int pRight = right(pos);
 
-		if (pos >= size)
-			return;
-
-		fazHeap(pLeft);
-		fazHeap(pRight);
-
-		if (pLeft < size && v[pLeft] > v[pos])
+		if (pLeft < tam && v[pLeft] > v[pos])
 			ptroca = pLeft;
-		if (pRight < size && v[pRight] > v[ptroca])
+		if (pRight < tam && v[pRight] > v[ptroca])
 			ptroca = pRight;
 		if (ptroca == pos)
 			return;
@@ -103,15 +176,14 @@ public class Heap {
 		int aux = v[ptroca];
 		v[ptroca] = v[pos];
 		v[pos] = aux;
-
-		fazHeap(ptroca);
-
+		sift_down_2(ptroca, tam);
 	}
 
-	public void fazHeap() {
-		fazHeap(0);
-	}
-
+	// ****************************************************************************************************
+	// ****************************************************************************************************
+	// ****************************************************************************************************
+	// ****************************************************************************************************
+	// ****************************************************************************************************
 	private void print(int b, int elem, int sp) {
 		int i, j;
 
