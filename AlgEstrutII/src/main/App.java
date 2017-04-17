@@ -7,11 +7,11 @@ public class App {
 	private static Scanner input;
 
 	public static void main(String[] args) {
-		testaHeap();
+		// testaHash();
 	}
 
-	public static void testaHeap() {
-		
+	public static void testaHash() {
+
 		HashTable H = new HashTable(10);
 		System.out.println();
 
